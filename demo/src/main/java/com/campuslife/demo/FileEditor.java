@@ -163,6 +163,7 @@ public class FileEditor {
 		printWriter.print("WHIP CREAM SHAVE");
 		
 		printWriter.close();
+		fileWriter.close();
 	}
 
 }

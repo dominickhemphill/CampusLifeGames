@@ -16,7 +16,6 @@ public class DemoApplication {
 		File campusLifeGames = new File("CampusLifeGames.txt");
 		
 		if(campusLifeGames.createNewFile()) {
-			final Formatter y;
 			final FileEditor cLGames = new FileEditor();
 			
 			try {
