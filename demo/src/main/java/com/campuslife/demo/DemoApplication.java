@@ -17,17 +17,18 @@ public class DemoApplication {
 		
 		if(campusLifeGames.createNewFile()) {
 			final Formatter y;
+			final FileEditor cLGames = new FileEditor();
 			
 			try {
-				y = new Formatter("CampusLifeGames.txt");
-				System.out.println("file.txt File Created in Project root directory");
+				cLGames.startingTemplate();
+				System.out.println(campusLifeGames + " file created.");
 			}
 			catch(Exception e) {
 				System.out.println("Something went wrong...");
 			}
 			
 		}else {
-			System.out.println(campusLifeGames + " already exists");
+			System.out.println(campusLifeGames + " already exists.");
 		}
 	}
 
