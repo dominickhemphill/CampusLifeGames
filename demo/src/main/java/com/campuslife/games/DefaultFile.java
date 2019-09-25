@@ -1,14 +1,17 @@
-package com.campuslife.demo;
+package com.campuslife.games;
 
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-public class FileEditor {
-
+public class DefaultFile {
+	// method for creating a file with the manual defaulted games
 	public void startingTemplate() throws IOException {
+		// will create a file called "CampusLifeGames.txt"
 		FileWriter fileWriter = new FileWriter("CampusLifeGames.txt");
+		// will print the following to file
 		PrintWriter printWriter = new PrintWriter(fileWriter);
+		
 		printWriter.print("$1000 BILL EXCHANGE");
 		printWriter.print("3 TRUTHS & A LIE");
 		printWriter.print("ADDITION");
@@ -162,6 +165,7 @@ public class FileEditor {
 		printWriter.print("WHAT WOULD YOU DO FOR CANDY");
 		printWriter.print("WHIP CREAM SHAVE");
 		
+		// close printWriter, fileWriter
 		printWriter.close();
 		fileWriter.close();
 	}
