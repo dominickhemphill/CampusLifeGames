@@ -7,29 +7,27 @@ import java.util.Scanner;
 public class FileEditor {
 
 	public void getfile() throws IOException {
-		
+
 		File campusLifeGames = new File("CampusLifeGames.txt");
-		
-		if(campusLifeGames.createNewFile()) {
+
+		if (campusLifeGames.createNewFile()) {
 			final DefaultFile cLGames = new DefaultFile();
-			
+
 			try {
 				cLGames.startingTemplate();
 				System.out.println(campusLifeGames + " file created.");
-			}
-			catch(Exception e) {
+			} catch (Exception e) {
 				System.out.println("Something went wrong...");
 			}
-			
-		}else {
+
+		} else {
 			System.out.println(campusLifeGames + " already exists.");
 		}
 	}
-	
-	
+
 	public void getInput() {
-	Scanner newGame = new Scanner(System.in);
-	
-	System.out.println(newGame.nextLine());
+		Scanner newGame = new Scanner(System.in);
+
+		System.out.println(newGame.nextLine());
 	}
 }
