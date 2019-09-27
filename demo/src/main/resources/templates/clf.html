@@ -11,14 +11,28 @@
     	<script type="text/javascript">	</script>
 
 <body>
+
+	<!-- User Input -->
+	<h1>Add A Game!</h1>
 	<form action="/" method="post">
 	  Game Name:<br>
 	  <input type="text" name="gamename">
 	  <input type="submit" value="Submit">
 	  <input type="reset" value="Reset">
 	</form>
-
-
+	
+	<!-- List Of Games -->
+	<h1>List Of Games</h1>
+	<table>
+		<thead>
+			<tr>
+				<th>Game</th>
+			</tr>
+		</thead>
+			<tr th:each="i : ${list}">
+				<td th:text="${i}"></td>
+			</tr>
+	</table>
 </body>
 
 
