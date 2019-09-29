@@ -25,15 +25,13 @@ th,td{
 }
 
 th {
-	background-color: dodgerblue;
+	background-color: #0b911c;;
 	color: white;
 	text-align: center;
 }
 
-table h1{
-	text-align:center;
-	font-size: 30px;  
-	font-style: italic;
+ h1{
+	color: #0b911c;
 }
 
 .clfTable{
