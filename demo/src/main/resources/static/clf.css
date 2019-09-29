@@ -1,0 +1,43 @@
+table {
+    counter-reset: rowNumber;
+    
+    border-collapse: collapse;
+    width: 100%;
+    text-align:center;
+	font-size: 18px;  
+	font-style: italic;
+}
+
+table tbody tr {
+    counter-increment: rowNumber;
+}
+
+table tbody tr td:first-child::before {
+    content: counter(rowNumber);
+    min-width: 1em;
+    margin-right: 0.5em;
+}
+
+
+th,td{
+	border: 2px solid #ddd;
+	padding:15px;
+}
+
+th {
+	background-color: dodgerblue;
+	color: white;
+	text-align: center;
+}
+
+table h1{
+	text-align:center;
+	font-size: 30px;  
+	font-style: italic;
+}
+
+.clfTable{
+	overflow-x: auto;
+}
+
+

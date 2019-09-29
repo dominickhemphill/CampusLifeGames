@@ -7,7 +7,8 @@
 	    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 	    <!-- BootStrap -->
 	    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-	   
+	    <!-- CSS -->
+	    <link rel="stylesheet" href="clf.css">
 
 <body>
 
@@ -22,18 +23,22 @@
 	
 	<!-- List Of Games -->
 	<h1>List Of Games</h1>
-	<table>
-		<thead>
-			<tr>
-				<th>Game</th>
-				<th>Date</th>
-				<th>Rating</th>
-			</tr>
-		</thead>
-			<tr th:each="i : ${list}">
-				<td th:text="${i}"></td>
-			</tr>
-	</table>
+	<div class="clfTable">
+		<table>
+			<thead>
+				<tr>
+					<th>Game</th>
+					<th>Date</th>
+					<th>Rating</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="i : ${list}">
+					<td th:text="${i}"></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
 	<!--  /*[/]*/ -->
 	<div id="table_div"></div>
 	<!-- JavaScript Table -->
@@ -50,8 +55,8 @@
     	
         /*<![CDATA[*/
         /*[# th:each="i : ${list}"]*/
-        data.addRow([/*[(@{${i}})]*/]);
-        
+		data.addRow([ /*[(@{${i}})]*/ ]);
+		
         
         /*]]>*/
 	
