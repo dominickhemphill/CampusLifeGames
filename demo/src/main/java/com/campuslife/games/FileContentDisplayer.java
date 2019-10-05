@@ -7,9 +7,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FileContentDisplayer {
+	
+	GameDto games;
+	GameWarehouseDto warehouse;
+	List<String> words;
+	List<GameDto> actualGames;
+	
 	// will display contents of file
 	public List<String> displayContent() throws IOException {
-		List<String> words = new ArrayList<>();
+		
+		words = new ArrayList<>();
 		// finds file
 		FileReader file = new FileReader("CampusLifeGames.txt");
 		// reads file
@@ -24,6 +31,7 @@ public class FileContentDisplayer {
 		
 		// while loop allows reader to continue through file
 		while (line != null) {
+			games = new GameDto();
 			text += line;
 			line = reader.readLine();
 			words.add(line);
@@ -33,5 +41,18 @@ public class FileContentDisplayer {
 		file.close();
 		reader.close();
 		return words;
+	}
+	
+	
+	
+	public GameWarehouseDto listConverter() {
+		actualGames = new ArrayList<>();
+		for(String gameRow : words ) {
+			games.setName(gameRow);	
+		}
+		actualGames.add(games);
+		warehouse.setGameList(actualGames);
+		return warehouse;
+		
 	}
 }

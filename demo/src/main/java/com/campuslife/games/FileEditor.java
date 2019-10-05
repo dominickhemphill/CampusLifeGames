@@ -25,9 +25,17 @@ public class FileEditor {
 		}
 	}
 
-	public void getInput() {
-		Scanner newGame = new Scanner(System.in);
+	@SuppressWarnings("resource")
+	public void addGame() {
+		GameDto newGame = new GameDto();
+		GameWarehouseDto  list = new GameWarehouseDto();
+		
+		Scanner input;
+		input = new Scanner(System.in);
+		String game = input.nextLine();
+		newGame.setName(game);
+		list.addGame(newGame);
 
-		System.out.println(newGame.nextLine());
+		System.out.println("The game " + newGame + " has been added to the game warehouse.");
 	}
 }
