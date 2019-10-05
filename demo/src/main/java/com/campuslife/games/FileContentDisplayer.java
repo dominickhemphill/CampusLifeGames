@@ -8,13 +8,13 @@ import java.util.List;
 
 public class FileContentDisplayer {
 	
-	GameDto games;
+	GameDto game;
 	GameWarehouseDto warehouse;
 	List<String> words;
 	List<GameDto> actualGames;
 	
 	// will display contents of file
-	public List<String> displayContent() throws IOException {
+	public GameWarehouseDto displayContent() throws IOException {
 		
 		words = new ArrayList<>();
 		// finds file
@@ -31,16 +31,21 @@ public class FileContentDisplayer {
 		
 		// while loop allows reader to continue through file
 		while (line != null) {
-			games = new GameDto();
+			actualGames = new ArrayList<>();
+			game = new GameDto();
 			text += line;
 			line = reader.readLine();
-			words.add(line);
+//			words.add(line);
+			game.setName(line);
+			actualGames.add(game);
 		}
+		
+		warehouse.setGameList(actualGames);
 		
 		// close file/buffered reader
 		file.close();
 		reader.close();
-		return words;
+		return warehouse;
 	}
 	
 	
@@ -48,9 +53,9 @@ public class FileContentDisplayer {
 	public GameWarehouseDto listConverter() {
 		actualGames = new ArrayList<>();
 		for(String gameRow : words ) {
-			games.setName(gameRow);	
+			game.setName(gameRow);	
 		}
-		actualGames.add(games);
+		actualGames.add(game);
 		warehouse.setGameList(actualGames);
 		return warehouse;
 		
