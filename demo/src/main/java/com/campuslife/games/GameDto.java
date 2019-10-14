@@ -6,7 +6,7 @@ public class GameDto {
 
 	public String name;
 	public Date dateOfUse;
-	public int rating;
+	public double rating;
 	
 	//Getters and Setters
 	public String getName() {
@@ -21,7 +21,7 @@ public class GameDto {
 	public void setDateOfUse(Date dateOfUse) {
 		this.dateOfUse = dateOfUse;
 	}
-	public int getRating() {
+	public double getRating() {
 		return rating;
 	}
 	public void setRating(int rating) {

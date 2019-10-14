@@ -1,31 +1,64 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-	<title>Campus Life Games</title>
 	<meta http-equiv="Content-Type" content ="text/html" charset="UTF-8"/>
+	<title>Campus Life Games</title>
 		<!-- Google Charts -->
 	    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+		 <!-- Font Awesome -->
+	    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css">
 	    <!-- BootStrap -->
-	    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+ 		<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 	    <!-- CSS -->
 	    <link rel="stylesheet" href="clf.css">
-
+	    <!-- JavaScript -->
+	    <script th:inline="javascript" src="clf.js"></script>
+</head>
 <body>
-
-	<!-- User Input -->
-	<h1>Welcome To Campus Life Games!</h1>
-	<h3>Add A Game</h3>
-	<form action="#" th:action="@{/}"  th:Object="${GameWarehouseDto}" method="post">
-	  Game Name:<br>
-	  <input type="text"  name="gamename">
-	  <input type="submit" value="Submit">
-	  <input type="reset" value="Reset">
-	</form>
-	
+		<img class="headLogo" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTSbeZt7zpp48OQPDZwCG0RpI8CuYY5Bj-KNouFhvRUuYAizRRM">
+	    <a class="navbar-brand" href="#">
+		    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAVEAAACWCAMAAABQMkvIAAAA0lBMVEX///8AAAblSyEAAABhYWGlpaYAAAPQ0NHc3NzlSR5ra2zi4uLz8/TkPABaWlyBgYJ8fH4rKyzkPgDjNQB1dXbDw8MwMDKenp/KysvkRhfW1tatra7kQxHkRBP3z8f++Pb52tToZEX87uu5ubqQkJHxqZvs7O398/Hzt6s5OTvulYP1xLpHR0nre2P53ddWVlfpbVHvnY3qdFrsgmwSEhWUlJUdHR/nVzPyraDtjHj2ycDoYUHnWTbvmontiXX0u7A7QUYdJy0AABEADhgMGyPiIwD9IT8zAAAUVklEQVR4nO1d6ULizBKNRJQAEU1kAAmCbO6o4yjufnd7/1e62bqqek1AAXU4vzR0t+bQS+1tWWusscYaa6yxxhpfA5V6uxhicLDqf+Rr4mozxVWT/2AHPuAeDzZtxK9hSTvizoA+LKVPr7aj3+rwV2VcjaMWB6w9/7WlbXYaH3/xhaEN9Pzhnt/B8yI+rNbC37c2AOFvp3VxRNaPe+tt9rTO/1EFKlGLJvutqRx797NefxG4shk9lIIqI86+wIcNjk5G6mmFH9BWDBcymj5NGRWHIQNWuPY8o1vJY7v2mQx8NsY2++ftKj4tyw+rpzKfSZMiN+CPYXTyfnP7HPgh3MLvx4fDbt6ORZik+/DsAJ612SNgXsIW/4I/gtHj90vX9YKW4xQiOK2O5/rPN5N8vU+BvpL4CNd8VUuo+IY/gNGn377XKkhwAr8wOs7RvyLtmQObzb4xa7RHSGDnA3nSxuFyMWqLYwgn0yoZPWm5CjqB1Ld+9hB3MEnTgxu2Vtgha0ifbV806s1me5fjA6jPw2ipUUzBxrXv2JNGlWu/dEbfA8/R8Rmj479lz1M2Ae2N+NehtOYrhNAdONvbhNIdGCwHo4gmez7mn6+K0cmLa+Yz4fQha5wSrPuIhnH6G1nzO0gdWd/R8Q/PQRSfidE6ey6IYCti9MbP5jOC+5y19GHxRcLSprTmx0icwAieamX26Psyevzs5eIzRMt/zxjs3gZiDqQ1TzbaodAPRIAtEFy/LaMT1fmuhX9mHm0bOKuk046seesXTGGpI0qzjKtFMrqxQEafpBXvhEKo68civhdI24F7aR5vHw4nac2HE3FDxVICkAvYW34uo+1KCVFZ4Bw99wU6Az94Oznsh+d6tz85fz2SRNTg2jwiMCOteaJBjeV++2KHT2WUyKlEfF0Ao088oS23MBIUpO75bz/gKf1tHJK924a05kHgVyx61H/gw89lVInPZ7THEer4R4eqVv1Xv0PbebfGQcv0JTjrB5B2peh28BMY7XNSqDdV8hnh+I3bbd0b47BErbRP6QcNFARkMOF/6zsz+kK2SMc30tQr0KXvP5naDuAttvgN88czekbk0FbQy2h96xL6PaNGqjY+Z6z60vdf9XQT7bxkK+0j2t54OjHDPb/mM04m+HArffD9zvoCbo2dozwd3gml/rmpZfofE9NzjBK8nkJ6qokT+HPl0W3u8ULk0Qdc862XfF0IpU7L1JAxKu6XwGhR2wcVVPH3GF9YC+3iOe84eT0fI9xLvZGhnY5RMOn/kbrAcYZa6JZiorfVDH0FRm/w7PZzej1CXIJg6niGr0HHaEM/STekPfaPrWB/V8Pc6hnt4mxzM82epFsLZrZn6KZjFKx5W+Kbg1qAU/JKRYbNzC9Vvv/qGT2BXbT1PEs/VFudgr6VjlEwmW7Y/KszpX6DeP3AA7CH7eD4+iUMvHpGpzDXZljzEX6DVuBqVSw9o+gVod75CjHhb8JTFHzgGe4ad8LAK2d0AlOtY1bS5+upZZR47rZs++4gXLuVwY5NHhK56h742yiGRI0Hp9pNY/WMvgZzTtHwcMJJqj2b9IwiTUTo3sBH1PvUtsWW8Ls08MoZhUXfMpvmFEBVy9Vq9wZG9SElG5JK8EvT1BbPpdUz2kdWjLqPEvBtBFoPiYHRcCvVUiq217FvD6RRV83oOZz03uydR2zHcLRSgolRa/xHw5PkzotiG1XtFD6VVTN6xkhpZXiNVJiAKOvrNlIjo5GsJBMlhXjGKMktbcUMXT2j1+x08U7m6O2wZe/2NC3YSaJh1Cpd2DxV4a+iPJSizLUMBYQrhZUlYpRGOyGWFZELLk531pM+Aoikns57z4KyNSyFKNU449pFW9uysksbljVB+9tXNFYcsaSo8S4cTCblXAswCQQma0kmKoNhOXqt3aJiuXPYLu5GDfcbWQ1XBtgJTZqkHu/sXOs8fvZ/9l3RA0ZzWZpFHLLu85xrPxMfpAS+kNnVg5+Kp48x2ofuGeElfw8+OEcna0ZFfJCS9aoXMQHxJ2F0cvueJ3EBgFN8Rkvgz0R/VMDIsER66v7P849mUJ7A/h+8Luq//D6YXPpcSGgi4U+dQsvzz3Jkg8QAq0Awg4fqZ2Jy7QvBoIlm/hZ7OAP/LJ8GdQQ6rDH86S/Amcgnm2VMmgrcPGu/C6bAme3/HMaDu1gLLd8NlMaPL49eKxD5hMMecpnc6+wzCg4mlXG1aqshGjjGwz/04z9DmdSKOMbpflF0L60SI3WGjRtvnrAzFloGD2eKNxYFoZK9qpq8ZJ7Ryo5szbsS2aoIptGY1T2VcXQluHRVfLI4hj4JaMrMA4OjTWV6ysVoTW2aF8y/IqNpq9OvsUUcKVZ8QmBifTojn5tDc9HypNxGczBa3dM55O45h5ySUSl2YkV46fA8djAuL3HddWlWqGsUM8FxpzQFZjNqcIbyZGkYVXlCl45rboY6nvuIrjtnGjfhkkZ8gyX5HbaPQDWXMxk159dTsnSMat1Xy8MtzVJ03GnkyyBxDInE9Eo3WkO8rYPhPSqNAOuSaM56DMiJnEYJ8Eug8UzAKAwC/Va87h8oV53UN4QikOMmAtMl5V3JVgQiFSitLBAwfkdz3EolNvcaSGh4FDXDU2bcpAcVceBVOPdmtVK/0IT3LxsTup5dsG1gKBmLqaeU6qKeSey+rxSzgFG1K45sCjR+ZBcekzBGYBTmN0TrbVqrxJScOT7qROckgDTdNh/JZPaUB/4xGgU04Q8ZjA5hNvJe9wFQijKUzCgLmpJiHZeKEc48h5tWL8g0S0+i2SBKDfMZ1Vj1FM1iFNa3GMaAQeMQ46xgNA0zte9zvfpi0NeSdEg/6SXPHvCZapskMoPO2GxmFHnbFz8qS1wrGN39Aoy+oSQqzqpb/MhhlN642ua8EKY7usyMslBmKeibCgmMbAWjqaBA86GXDTJFXVHIpFK9w4o7YOqCOEmPXwih2th9M6MshkyeoiQbnGUyyIxCcJMUcrY8GIUdXqpPohlI6oKwSdA8+47WPwWM7hcJmLQjZdgQ1MX5C4yyyPwiTONtufuyQKaowkxHE0MLQSFe5khz5w1bdrnkZSfQmqY1En5CEsrsCmsH5JEw+R0YHYbfyV1tBzSBVR71aNVQhyhdU33f8a97Fk1dwKCoB4/TY9muq4BaC5UYVXUVZ6CoM6HIusISsMCOo4m8nXJW/Zb/fI6+Yxb/3B95fHUtU06okVEI5lQyCpusyKgwlkYwWwowBk9p1QhxXOAdJY7rvSLBsYJ1/D+h/Itvcp0YGS3BVqnqaudiVB2Quyw8YTSyTk8XKS04RKZy4ibPMxD6oVXPPhT2UZ7P8koNzq98pIMS3RedMZqd9tQaHW625lQI48kkHT4U0rHF7aPpTxcrNo1icLjJ06FzmLCY8hMiEXS8DPcnSE8XXJXqlAhgRrEVSrV0yFnf3mPpoCu24+EZY+ThQVc2L5GfesSmcp3l0QdGlbsdJM+eyp9dwDxMH1B5dGDouEQcY9aSueFkqp6mTmzTA72rY95CY5h1JszrlGR0rK7F1AFOZzo1zO7lAYPDp1lNH1zVbpocTWnieMu/zBFvZmYUt8Y98aNf0h7LMYrVoFa5k84SJtp99eUaeamMHymmLf+ol+dvZljz0AwvaPaQDo7rmtfrWeXSlTqZzmfKQOiOPKnscMJooRX4l718fzODUSwBx1OKdcxQ5ecZreg3jOVhNkZDPF36LjdTk+xkb/qA6z3vWa/Z70gm/T3k0jQxoZkcPYLtCWxT0oaxPMzMaIin12cfnXpJwRyiHfSmGts9QxajFeJosu+Hg2ZzMLyn+fUV0pRjFNzSuuy8JQBUphnzjiYBzyigfxvKWQYziZXNKFZu3UAtgDwhXk7RPgp+O5Xlajno5Q63P3qmMw+kLl5G6D/GJR4d1xS5m8koKUkig9tcJYszTFJVkbilALJkzOWuIjup4xZOQHjHb4IkkB1espKZxkS9bEYNlPKnlcSoXJh46UAJ3yhJxj48x/MvzxNSMUsRbM49n0TzBoaEhhyMRlffKPkUAhtkrwiU3d4wv/fiAJXxzEGh7Hhvef71TVcdZ99rEcnKUCwzD6NWaU+VNr8n3HolM4qu1FXdAnTLWDAmdRDbUuLRn6q+iC4JmDTsIhDjbNYWB/f8gRSe+5IhAGKcqS+UQXHn2DLwAIe2o29Eo3Fji8pEs1kQ57KhaF5600cj65UPaiRs/L6mcHRU2VB4tFfgHpEVmZ2x/oVh2RO3fSIYnenqkGBEibFoXm5Ut+ObA9vbq48HzQ0vuwgR9ejHPntMBRFdKSTqyVjZ8SfjDOafNlEGazymNcZu9MW1MLDHtI38aGCUqFbIhwjbdCX3UQeVbYC4Q2SnlPxQYGVhTakskpyULGTirpddKUg3DY/4q4ClhTXlwcG5l05RErmjKov3yCapEyz2H/+6wNiFlrImCbiO05JtOKmVMiyRrD6UwfiNQepfq5RHjJFIcm5PiJdOOadB+p+r9taPAMbaFVzZqNcTjCkvWfIRSAJ/b2UiGtLoSf4mMIokrqhJZk3hQ5Vd6i/DLfFyBi+CbXPElxfDYAedqR4UgvmKb/0MUM+RmEcLGqcXC1egEXi60qJd+H4yYgBCzb1di/Lny8PB8gNB0tz98sx14bZr+9kRAVxCU8Hl7gyCMP1EYmfCqGFJgzCgLZUZo1mmYU9bNULqPnvKdThgT4GDHSFtb2NnKFqaL5RDWcU90m2nLjZWgEWq719tVxrZXpd3jlLHnaK5HpSg5KhPA6Wclt5C/ZKH0cEf/j718H++AGMUXBLAdYEQB3AelwUbavzqu9zbpk583j064AyFkYOwSRsrjd1p1HR73yoWq5X/6t8sxYijNDLXXz8cxjsqCPiUUcczeJKm2YyOT5UVW5mVeF5GI2zxV7KrGC1Lfzytg5qD0X9Z1V/1C6ucHRJwI9wPWGgFru+3plOhuP1t4pozCe9YzlXXoq6rvnzxcUYjTkkVVgWjm6pe8arOx+h/wn+gnSO4aiRSGs9FzENOBfbo6G8FJkKPQYDtaFoUtene6Sz9GKOcv15mtKF2YRXzMfpvq/pP8c6q5TnPzjMuAk6U0FDgD6ZGLx+qBJqy2ANlkHP8b6eXVH+UURIlITFaJSnjJJD3jjQ2MXp3Z1WsUlUZgi1hUtDHMhdYYKMV+BmF2x54lUACiRkR8uLh1u9ZGbX5cWgwmcQoZPLa9uZwuJt4CNO1cSUPhG6ZtP8/tXG1njsX5dE4TZO4htese5XB2KepOIw1SKJbLrbjWy6uolfAa9RnZDTtWC3dwZSDnhKjcA1x+tdKYQv2BUDCf2WTdcMaAGyA9s5VLb+Tpme6U90YWA44zvBcYQwO9b5XwsMf76WflVGIIIEKJ+AJFRkF3zbmkLXJX2ZgKdCfkGl2XpACGmHZZ0btRkBTlq/cbsmC4hSlCxJYMzejGDvOhHaZ0bQBiaVQxJ98IqOW9XStiryNJ12eInigMam9LAMNoRzmZ5TlmkCQv8hoRcGoAp/KaJRC9+y7QUui1clxfSBaUtSbBF4UapDoFsgozFFzjOknMxri+Gl0WYhuU4+AkzTThkzyxzMK6Zj+VzWjpRyMNlkbJi9KJxMmPpl0889nNEG3359M+qSWizGMMcJvTL5Xyk5NmKKmkA9gtE0Txoc5GE0DpLHegcToDm47m/oAvkUxmgLSyDJvvCN3W6rDcjEc0SSA7OJbc6YlHaPsrK5IGU8yo/CdxqOXNaQumFFSryQw5pS8m4uYWOReP2Me1y6+tQIyo6fhXG4M9zGeD8NHZS30ggweqU01VfzVghklHnqF2wTxnlVohyQfGOsxzciofCUbbgMyo0IROVt5V86iGaXldoJnnVb/Sltpwh+AUeMlPbMyKjYghXQUtqfqvWBYUKSPL5pRuj8WWurYk/4RSbfVFtUARhWFXRAfYtTm6ugoLc413uIcLn5ROl04o9YRUaQcN66twaH7ylWA1ibgzLjq851MPKEbnKCrZNSqDm2eVPF2ssUzesxVzWj5R+90EvbefM5s5WorvqpuoZUB0lOZSxg32p4YNcICVjMaIqpuSDOn+E8XzygtMBhz6vlHr++Hk8nh+ejSdflysAaBAJVQk3w9q4QfnvUgRAhJoVpGQ2zvksOMV+GWwChf+inZK71IofIC0bISGCIfSsCo4n56wDzWPGYkFPJuTIyGqx/Td/lvYhmMhpSabfxAqDHZDJRA+X56xDx6fVM9sJlRy7pTC8hLYdTqGWynZA8155XjoWPI3ZzLUgL6ElfgLYtRVvFIaLAcRq3+1Og2ibcCU4HnCAe4c/HHa4kkIM3FKBY2omZCFaPcH06/CKEY5JIYzXKbhCu+1csaAisScDteid7MOZ81D07+DHm0yYlubI7yxSCXxqjVmxqWfsfXXrOMwEm6ZZfBXBLKh+RwmI/RMVgKiQQlMxrduPoLdHkw+vMqx/IYtayTQMNp4N/mumyIpNGGKnWx3my20zuB5/WFMjUeJCjST2I0vqjZtjeTQRqqb8FaLqOW9f4suU2cjuu+5r28idxPL5QQnDOmhDGKFQtwAxEZPWCe7HCiXtzjX16+hM+hPzryQ0G004rQCVw/eJzhHibTlQzJ+TCvVwRLG4E/XWD0wCabjrokfIxlMxqi2zs5u70Ocfn48JR3dqbQ3k/PjEBz+5m2WBNgQmBUGfMknfQrYfRDqP5Svhic/nMzikouU8nEVa+5VEfUib8bo8nZLr0W3AI0vy8UdFHmdZFOprot/ukte08yMnw/Rq3xPvdmNpc+nxHjDIxupg9QloTL6JncwEKZyLJucJa88GeF9laWu319VIskcMvep4pMXSiXnWAsZdPX5VR68J42kkk6SH/lTEt1ErB+qjTZ1FXdvgNK8Qu3m8svJlSpR9y3V1jveY011lhjjTXWWGONNdZY4+/A/wEab5abrK+4vQAAAABJRU5ErkJggg==" 
+		    width="110" height="45" class="d-inline-block align-top" alt="">
+	    Campus Life Games
+	  	</a>
+	<!-- Nav Bar -->
+	<div class="pos-f-t">
+	  <div class="collapse" id="navbarToggleExternalContent">
+	    <div class="bg-dark p-4">
+	      <h5 class="text-white h4">Welcome To Campus Life Game Warehouse!</h5>
+	      <span class="text-muted">Be Fruitful!</span>
+	    </div>
+	  </div>
+	  <nav class="navbar navbar-dark bg-dark">
+	    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+	      <span class="navbar-toggler-icon"></span>
+	    </button>
+	  </nav>
+	</div>
 	<!-- List Of Games -->
-	<h1>Game Warehouse</h1>
+	<div class="container mt-5">
+	<h3 >Add A Game</h3>
+		<form action="#" th:action="@{/}"  th:Object="${GameDto}" method="post">
+		  <input type="text"  name="gamename" value ="Game Name:">
+		  <input type="submit" value="Submit">
+		  <input type="reset" value="Reset">
+		</form><br>
+		<div class="form-group">
+		<h3 class="text-center">Rate A Game</h3>
+			<select id="product-select" class="form-control custom-select">
+				<option value="0" disabled selected>Select Game</option>
+				<span th:each="i : ${collection.gameList}">
+				<option value="${i.name}"><span th:text="${i.name}"></span></option>
+				</span>
+			</select>
+		<div class="form-group">
+		 <input type="number" id="rating-control" class="form-control" step="0.1" max="5" placeholder="Rate 1 - 5" disabled>
+		</div>
+	</div>
 	<div class="clfTable">
-		<table>
+		<h3 class="text-center">Game Warehouse
+		</h3>
+		<table class="table table-striped">
 			<thead>
 				<tr>
 					<th>Number</th>
@@ -35,51 +68,21 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr th:each="i : ${collection.gameList}">
+				<tr th:each="i : ${collection.gameList}" class="${i.name}">
 					<td></td>
 					<td th:text="${i.name}"></td>
 					<td th:text="${i.dateOfUse}"></td>
-					<td th:text="${i.rating}"></td>
+					<td>
+						<div class="stars-outer">
+							<div class="stars-inner"></div>
+							<span class="number-rating"></span>
+						</div>
+					</td>
 				</tr>
 			</tbody>
 		</table>
 	</div>
-	<!--  /*[/]*/ -->
-	<div id="table_div"></div>
-	<!-- JavaScript Table -->
-	    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <script type="text/javascript">
-          google.charts.load('current', {'packages':['table']});
-      google.charts.setOnLoadCallback(drawTable);
-
-      function drawTable() {
-        var data = new google.visualization.DataTable();
-        data.addColumn('string', 'Name');
-        data.addColumn('number', 'Salary');
-        data.addColumn('boolean', 'Full Time Employee');
-    	
-        /*<![CDATA[*/
-        /*[# th:each="i : ${list}"]*/
-		data.addRow([ /*[(@{${i}})]*/ ]);
-		
-        
-        /*]]>*/
-	
-    
-        
-        var options = {
-                title: 'My Daily Activities',
-                firstRowNumber: true,
-                allowHtml: true
-              };
-
-        var table = new google.visualization.Table(document.getElementById('table_div'));
-
-        table.draw(data, {showRowNumber: true, width: '100%', height: '100%'});
-      }
-    	</script>
+	</div>
 </body>
 
-
-</head>
 </html>
